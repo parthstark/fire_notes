@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       home: user==null
         ?Login()
-        :Home()
+        :Home(user.uid)
     );
   }
 }

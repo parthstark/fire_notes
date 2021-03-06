@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../google_sign_in.dart';
 import 'home.dart';
@@ -13,6 +14,8 @@ class _LoginState extends State<Login> {
   // final formKey=GlobalKey<FormState>();
   // final _emailController=TextEditingController();
   // final _pwdController=TextEditingController();
+
+  var reference=FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +60,15 @@ class _LoginState extends State<Login> {
             InkWell(
               onTap: () async{
                 User user= await googleSignIn();
+
                 if(user!=null){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home()));
+                  var id= await reference.doc(user.uid).get();
+                  if(!id.exists){
+                    reference.doc(user.uid).set({});
+                    id= await reference.doc(user.uid).get();
+                  }
+                  
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home(user.uid)));
                 }
               },
               child: Container(
