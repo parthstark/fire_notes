@@ -60,6 +60,9 @@ class _HomeState extends State<Home> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 margin: EdgeInsets.symmetric(horizontal:10, vertical:5),
                   child: ListTile(
+                  leading: snapshot.data.docs[index].data()['priority']==0
+                            ?Icon(Icons.keyboard_arrow_right,color: Colors.blue,)
+                            :Icon(Icons.notification_important,color: Colors.red,),
                   title: Text(snapshot.data.docs[index].data()['title'],textScaleFactor: 1.5,maxLines: 2,overflow: TextOverflow.ellipsis,),
                   subtitle: Text(snapshot.data.docs[index].data()['content'],maxLines: 10,overflow: TextOverflow.ellipsis,),
                 ),

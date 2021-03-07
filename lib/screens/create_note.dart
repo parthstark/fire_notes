@@ -13,6 +13,8 @@ class _NoteState extends State<Note> {
   var _title=TextEditingController();
   var _content=TextEditingController();
   var myNotes;
+
+  int _groupValue=0;
   
   
   _NoteState(uid){
@@ -39,7 +41,8 @@ class _NoteState extends State<Note> {
             onPressed:(){
               myNotes.add({
                 'title':_title.text,
-                'content':_content.text
+                'content':_content.text,
+                'priority':_groupValue
               });
               Navigator.pop(context);
             },
@@ -66,6 +69,19 @@ class _NoteState extends State<Note> {
                 ),
               ),
 
+              Divider(),
+              Row(children:[
+                Radio(
+                  value:0,
+                  groupValue: 'priority',
+                  onChanged: (newValue) => setState(() => _groupValue = newValue),
+                ),Text("Low"),
+                Radio(
+                  value:1,
+                  groupValue: 'priority',
+                  onChanged: (newValue) => setState(() => _groupValue = newValue),
+                ),Text("High"),
+              ]),
               Divider(),
               
               TextField(

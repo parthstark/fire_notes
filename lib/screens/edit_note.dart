@@ -11,12 +11,17 @@ class EditNote extends StatefulWidget {
 class _EditNoteState extends State<EditNote> {
   TextEditingController _title;
   TextEditingController _content;
+  int _groupValue;
+
   QueryDocumentSnapshot snapshot;
+
   _EditNoteState(snapshot){
     this.snapshot=snapshot;
     _title=TextEditingController(text:snapshot.data()['title']);
     _content=TextEditingController(text:snapshot.data()['content']);
+    _groupValue=snapshot.data()['priority'];
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,8 @@ class _EditNoteState extends State<EditNote> {
             onPressed:(){
               snapshot.reference.set({
                 'title':_title.text,
-                'content':_content.text
+                'content':_content.text,
+                'priority':_groupValue
               });
               Navigator.pop(context);
             },
@@ -67,6 +73,19 @@ class _EditNoteState extends State<EditNote> {
                 ),
               ),
 
+              Divider(),
+              Row(children:[
+                Radio(
+                  value:0,
+                  groupValue: _groupValue,
+                  onChanged: (newValue) => setState(() => _groupValue = newValue), 
+                ),Text("Low"),
+                Radio(
+                  value:1,
+                  groupValue: _groupValue,
+                  onChanged: (newValue) => setState(() => _groupValue = newValue),
+                ),Text("High"),
+              ]),
               Divider(),
               
               TextField(
