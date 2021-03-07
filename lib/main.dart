@@ -7,17 +7,23 @@ import 'screens/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  //To initialise app with FireBase
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
 
+  //Firebase Authentication Instance Created
   final FirebaseAuth _auth=FirebaseAuth.instance;
+
+  //Firebase user created
   User user;
 
   MyApp(){
+
+    //Current logged in user is put inside Firebase user
     user=_auth.currentUser;
   }
 
@@ -27,10 +33,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Fire Notes',
       theme: ThemeData(
-        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.black54)),
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+
+      //If user is logged in goto Home screen else Login Screen
       home: user==null
         ?Login()
         :Home(user.uid)
