@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                   reference.doc(user.uid).set({});
                 }
                 
-                //Home screen receives user uid as string to - //TODO
+                //Home screen receives user uid as string to let home page get instance of the user's collection and documents
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Home(user.uid)));
               },
             ),
