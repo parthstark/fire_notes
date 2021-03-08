@@ -28,10 +28,11 @@ class _EditNoteState extends State<EditNote> {
 
   @override
   Widget build(BuildContext context) {
+  double h=MediaQuery.of(context).size.height;
     return Scaffold(
 
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: h/12,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft :Radius.circular(30), bottomRight:Radius.circular(30))),
         elevation: 0,
         title: Text("Edit your FireNote",textScaleFactor: 1.25,),
@@ -104,7 +105,7 @@ class _EditNoteState extends State<EditNote> {
                     groupValue: _groupValue,
                     onChanged: (newValue) => setState(() => _groupValue = newValue),
                   ),Text("Low", style: TextStyle(color: Colors.grey[500])),
-                  SizedBox(width: 20,),
+                  SizedBox(width: h/60,),
 
                   Radio(
                     value:1,
@@ -122,7 +123,7 @@ class _EditNoteState extends State<EditNote> {
                 maxLines: 50,
                 decoration: InputDecoration(
                   prefixIcon: Padding(
-                    padding: const EdgeInsets.fromLTRB(0,0,0,900),
+                    padding: EdgeInsets.fromLTRB(0,0,0,h),
                     child: Icon(Icons.content_paste),
                   ),
                   focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 2, color:Colors.blue)),

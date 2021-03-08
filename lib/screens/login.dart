@@ -17,6 +17,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+  double h=MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -31,24 +32,24 @@ class _LoginState extends State<Login> {
 
               //UI elements begin
 
-              SizedBox(height:50),
-              Image.asset("assets/img1.png"),
+              SizedBox(height:h/30),
+              Image.asset("assets/img1.png",height: h/2.5,),
               Text("FireNotes",textScaleFactor: 4,style: TextStyle(color: Colors.grey[800])),
-              SizedBox(height: 10),
+              SizedBox(height: h/150),
               Text("Keep all your notes synced at one place",textScaleFactor: 1.3, textAlign: TextAlign.center, style: TextStyle(color: Colors.grey[500])),
-              SizedBox(height:150),
+              SizedBox(height:h/5),
               InkWell(
                 
                 child: Container(
-                  height: 120,
+                  height: h/10,
                   child: Card(
                     shape: StadiumBorder(),
                     color:Colors.grey[200],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                      Image.asset("assets/g.png",height: 60),
-                      SizedBox(width:20),
+                      Image.asset("assets/g.png",height: h/20),
+                      SizedBox(width:h/75),
                       Text("Login",textScaleFactor: 3,style: TextStyle(color: Colors.grey[800]))
                     ]),
                   ),

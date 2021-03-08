@@ -34,11 +34,13 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+  double h=MediaQuery.of(context).size.height;
+
     return Scaffold(
 
 
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: h/12,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft :Radius.circular(30), bottomRight:Radius.circular(30))),
         elevation: 0,
         title: Text("Welcome to FireNotes",textScaleFactor: 1.25,),
@@ -66,7 +68,7 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Positioned(
-            child: Image.asset("assets/img2.png",height: 300,),
+            child: Image.asset("assets/img2.png",height: h/3,),
             bottom: 0,
             right: 0,  
           ),

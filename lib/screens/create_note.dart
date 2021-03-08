@@ -28,9 +28,10 @@ class _NoteState extends State<Note> {
 
   @override
   Widget build(BuildContext context) {
+  double h=MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: h/12,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30),
@@ -114,7 +115,7 @@ class _NoteState extends State<Note> {
                         ),
                         Text("Low", style: TextStyle(color: Colors.grey[500])),
                         SizedBox(
-                          width: 20,
+                          width: h/60,
                         ),
 
                         Radio(
@@ -134,7 +135,7 @@ class _NoteState extends State<Note> {
                       maxLines: 50,
                       decoration: InputDecoration(
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 900),
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, h),
                           child: Icon(Icons.content_paste),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -143,9 +144,10 @@ class _NoteState extends State<Note> {
                         border: InputBorder.none,
                       ),
                     ),
-                  ],
-                ),
-              ))),
+                  ],),
+              )
+          )
+      ),
     );
   }
 }
